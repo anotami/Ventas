@@ -3,14 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo de Accesorios - Cámaras de Acción</title>
+    <title>Venta de Garage: Accesorios para Cámaras de Acción - ¡Liquidación!</title>
     <style>
         :root {
-            --primary: #2c3e50;
-            --accent: #e74c3c;
-            --bg: #f4f7f6;
+            --primary: #5d4037; /* Marrón para el toque de garage */
+            --accent: #d32f2f; /* Rojo para ofertas */
+            --bg-color: #fafafa;
             --text: #333;
+            --card-bg: #ffffff;
             --shadow: 0 4px 6px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
         }
 
         * {
@@ -20,26 +22,30 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg);
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-color);
             color: var(--text);
             line-height: 1.6;
+            padding-bottom: 80px; /* Espacio para el botón de WhatsApp */
         }
 
         header {
             background-color: var(--primary);
             color: white;
             text-align: center;
-            padding: 2rem 1rem;
+            padding: 3rem 1rem;
+            border-bottom: 5px solid var(--accent);
         }
 
         header h1 {
-            font-size: 2.5rem;
+            font-size: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
             margin-bottom: 0.5rem;
         }
 
         .highlight {
-            color: #f1c40f;
+            color: #ffeb3b; /* Amarillo brillante para el texto destacado */
             font-weight: bold;
         }
 
@@ -58,15 +64,32 @@
             padding-bottom: 0.5rem;
             margin-bottom: 1.5rem;
             color: var(--primary);
+            text-transform: uppercase;
         }
 
-        /* --- Estilos de la Tabla --- */
+        /* --- Sección de Introducción de Venta --- */
+        .sales-pitch {
+            background-color: #fff3e0; /* Color naranja muy claro */
+            padding: 2rem;
+            border-radius: 8px;
+            border-left: 5px solid #ff9800;
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow);
+        }
+
+        .sales-pitch h3 {
+            color: #e65100;
+            margin-bottom: 1rem;
+        }
+
+        /* --- Estilos de la Tabla (Vista Rápida) --- */
         .table-container {
             overflow-x: auto;
             background: white;
             padding: 1rem;
             border-radius: 8px;
             box-shadow: var(--shadow);
+            margin-bottom: 3rem;
         }
 
         table {
@@ -91,24 +114,21 @@
         .table-img {
             width: 60px;
             height: 60px;
-            object-fit: cover;
+            object-fit: contain; /* Mostrar la foto completa sin recortar */
             border-radius: 4px;
         }
 
-        .old-price {
-            text-decoration: line-through;
-            color: #888;
-            font-size: 0.9rem;
-            margin-right: 0.5rem;
-        }
-
-        .new-price {
-            color: var(--accent);
+        .price-badge {
+            background-color: var(--accent);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 40px;
             font-weight: bold;
             font-size: 1.1rem;
+            white-space: nowrap;
         }
 
-        /* --- Estilos de la Lista/Tarjetas --- */
+        /* --- Estilos de la Lista/Tarjetas (Detallada) --- */
         .product-list {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -116,13 +136,13 @@
         }
 
         .product-card {
-            background: white;
+            background: var(--card-bg);
             border-radius: 8px;
             box-shadow: var(--shadow);
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            transition: transform 0.2s;
+            transition: var(--transition);
         }
 
         .product-card:hover {
@@ -134,12 +154,15 @@
             height: 250px;
             background-color: #eee;
             overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .card-img {
             width: 100%;
             height: 100%;
-            object-fit: contain; /* Para mostrar la foto completa */
+            object-fit: contain; /* Mostrar la foto completa sin recortar */
             padding: 1rem;
         }
 
@@ -167,17 +190,55 @@
             padding-top: 1rem;
             margin-top: auto;
             display: flex;
-            justify-content: space-between;
+            justify-content: center; /* Centrar el precio */
             align-items: center;
         }
 
-        .discount-badge {
-            background-color: var(--accent);
-            color: white;
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
-            font-weight: bold;
-            font-size: 0.8rem;
+        /* --- Botón WhatsApp Flotante --- */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            background-color: #1ebe57;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.6);
+        }
+
+        .whatsapp-icon {
+            width: 35px;
+            height: 35px;
+            fill: currentColor;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: #ccc;
+            text-align: center;
+            padding: 2rem 1rem;
+            border-top: 5px solid var(--accent);
+            margin-top: 3rem;
+        }
+
+        footer p {
+            font-size: 0.9rem;
         }
 
         @media (max-width: 768px) {
@@ -193,84 +254,155 @@
 <body>
 
 <header>
-    <h1>Catálogo de Accesorios Económicos</h1>
-    <p>Todos los precios al <span class="highlight">70% de descuento</span> respecto a AliExpress (Estimado)</p>
+    <h1>¡Venta de Garage! Accesorios Cámaras de Acción</h1>
+    <p>Artículos genéricos y clones a precios de regalo. Todo <span class="highlight">en Soles (S/.)</span>.</p>
 </header>
 
 <main>
     
+    <section class="sales-pitch">
+        <h3>¿Por qué comprar accesorios genéricos en liquidación?</h3>
+        <p>No necesitas gastar una fortuna en marcas originales para proteger tu cámara y conseguir tomas increíbles. Todos nuestros accesorios son clones o genéricos nuevos, ideales para:</p>
+        <ul style="list-style-type: none; padding-left: 1rem;">
+            <li>✓ Darle versatilidad a tu GoPro, Insta360 o DJI Osmo Action.</li>
+            <li>✓ Capturar ángulos únicos (bajo el agua, en movimiento, etc.).</li>
+            <li>✓ Tener un kit completo sin un gasto excesivo.</li>
+            <li>✓ **Aprovechar precios de liquidación total** (¡Lo que ves es lo que hay!).</li>
+        </ul>
+    </section>
+
     <section>
-        <h2>Vista Rápida (Tabla)</h2>
+        <h2>Vista Rápida (Mesa de Ofertas)</h2>
         <div class="table-container">
             <table>
                 <thead>
                     <tr>
                         <th>Foto</th>
                         <th>Artículo</th>
-                        <th>Descripción</th>
-                        <th>Precio Final (Tu Página)</th>
+                        <th>Descripción Breve</th>
+                        <th>Precio Final</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td><img src="imagenes/image_283d85.png" alt="Empuñadura flotante" class="table-img"></td>
+                        <td><img src="imagenes/flotador.jpeg" alt="Empuñadura flotante" class="table-img"></td>
                         <td>Empuñadura Flotante</td>
-                        <td>Monopod de mano para agua (con tornillo y correa).</td>
-                        <td><span class="old-price">$5.00</span><span class="new-price">$3.50</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="imagenes/kit.jpeg" alt="Kit de accesorios" class="table-img"></td>
-                        <td>Kit Completo de Accesorios</td>
-                        <td>Arneses, succión, soportes y estuche de transporte.</td>
-                        <td><span class="old-price">$25.00</span><span class="new-price">$17.50</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="imagenes/extensible.jpeg" alt="Mini tripode extensible" class="table-img"></td>
-                        <td>Mini Trípode Extensible</td>
-                        <td>Empuñadura tipo "Shorty" de dos secciones con trípode integrado.</td>
-                        <td><span class="old-price">$8.00</span><span class="new-price">$5.60</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="imagenes/insta360.jpeg" alt="Insta360 invisible" class="table-img"></td>
-                        <td>Selfie Stick Invisible (Estilo Insta360)</td>
-                        <td>Palo de extensión largo y delgado, ideal para tomas 360.</td>
-                        <td><span class="old-price">$20.00</span><span class="new-price">$14.00</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="imagenes/abrazadera.jpeg" alt="Abrazadera" class="table-img"></td>
-                        <td>Abrazadera de Sujeción (Jaws)</td>
-                        <td>Soporte tipo pinza con cuello flexible para montaje rápido.</td>
-                        <td><span class="old-price">$12.00</span><span class="new-price">$8.40</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="imagenes/tripode.jpeg" alt="Tripode flexible" class="table-img"></td>
-                        <td>Trípode Flexible "Gorilla"</td>
-                        <td>Patas articuladas para sujetar la cámara en cualquier lugar.</td>
-                        <td><span class="old-price">$15.00</span><span class="new-price">$10.50</span></td>
+                        <td>Monopod de mano impermeable para agua.</td>
+                        <td><span class="price-badge">S/. 15.00</span></td>
                     </tr>
                     <tr>
                         <td><img src="imagenes/3way.jpeg" alt="Soporte 3-way" class="table-img"></td>
-                        <td>Soporte 3-Way (Grip/Arm/Tripod)</td>
-                        <td>Soporte plegable multifunción (empuñadura, brazo y trípode).</td>
-                        <td><span class="old-price">$18.00</span><span class="new-price">$12.60</span></td>
+                        <td>Soporte 3-Way (Brazo)</td>
+                        <td>Brazo plegable multifunción (Grip, Arm, Tripod).</td>
+                        <td><span class="price-badge">S/. 45.00</span></td>
                     </tr>
                     <tr>
-                        <td><img src="imagenes/adhesivo.jpeg" alt="Soportes adhesivos" class="table-img"></td>
-                        <td>Soportes Adhesivos Curvos+Planos</td>
-                        <td>Kit básico de pegatinas 3M para cascos y superficies.</td>
-                        <td><span class="old-price">$2.00</span><span class="new-price">$1.40</span></td>
+                        <td><img src="imagenes/abrazadera.jpeg" alt="Abrazadera Jaws" class="table-img"></td>
+                        <td>Abrazadera "Jaws"</td>
+                        <td>Pinza potente con cuello flexible para montaje rápido.</td>
+                        <td><span class="price-badge">S/. 40.00</span></td>
                     </tr>
                     <tr>
-                        <td><img src="imagenes/marcos.jpeg" alt="Marcos de montaje" class="table-img"></td>
-                        <td>Marcos de Montaje Estándar</td>
-                        <td>Carcasas de plástico (frames) para montar la cámara en soportes.</td>
-                        <td><span class="old-price">$10.00</span><span class="new-price">$7.00</span></td>
+                        <td><img src="imagenes/adhesivo.jpeg" alt="Kit adhesivos" class="table-img"></td>
+                        <td>Kit Adhesivos Planos/Curvos</td>
+                        <td>Pack básico de pegatinas 3M VHB para casco.</td>
+                        <td><span class="price-badge">S/. 10.00</span></td>
+                    </tr>
+                    <tr>
+                        <td><img src="imagenes/bases.jpeg" alt="Bases de montaje" class="table-img"></td>
+                        <td>Bases de Montaje Rápido</td>
+                        <td>Hebillas (buckles) estándar para soportes.</td>
+                        <td><span class="price-badge">S/. 10.00</span></td>
+                    </tr>
+                    <tr>
+                        <td><img src="imagenes/brazo.jpeg" alt="Brazo flexible" class="table-img"></td>
+                        <td>Brazo de Extensión Flexible</td>
+                        <td>Cuello de cisne articulado (Gooseneck).</td>
+                        <td><span class="price-badge">S/. 25.00</span></td>
+                    </tr>
+                    <tr>
+                        <td><img src="imagenes/carcasa.jpeg" alt="Carcasa estándar" class="table-img"></td>
+                        <td>Carcasa Estándar (Frame)</td>
+                        <td>Marco protector ligero para montaje directo.</td>
+                        <td><span class="price-badge">S/. 30.00</span></td>
+                    </tr>
+                    <tr>
+                        <td><img src="imagenes/cargador.jpeg" alt="Cargador de baterías" class="table-img"></td>
+                        <td>Cargador Triple de Baterías</td>
+                        <td>Base para cargar 3 baterías simultáneamente.</td>
+                        <td><span class="price-badge">S/. 40.00</span></td>
+                    </tr>
+                    <tr>
+                        <td><img src="imagenes/clip.jpeg" alt="Clip giratorio" class="table-img"></td>
+                        <td>Clip Giratorio para Mochila</td>
+                        <td>Soporte con pinza de cocodrilo para correas.</td>
+                        <td><span class="price-badge">S/. 20.00</span></td>
+                    </tr>
+                    <tr>
+                        <td><img src="imagenes/extensible.jpeg" alt="Monopod extensible" class="table-img"></td>
+                        <td>Mini Trípode Extensible (Shorty)</td>
+                        <td>Palo selfie y trípode magnético de mano.</td>
+                        <td><span class="price-badge">S/. 40.00</span></td>
+                    </tr>
+                    <tr>
+                        <td><img src="imagenes/ventosa.jpeg" alt="Soporte ventosa car" class="table-img"></td>
+                        <td>Soporte Ventosa (Coche)</td>
+                        <td>Succión potente para montaje en vidrios o carrocería.</td>
+                        <td><span class="price-badge">S/. 25.00</span></td>
+                    </tr>
+                    <tr>
+                        <td><img src="imagenes/handpresso.jpeg" alt="Adaptador Handpresso Action" class="table-img"></td>
+                        <td>Adaptador Handpresso Action Cam</td>
+                        <td>Adaptador específico para tomas estables (clon).</td>
+                        <td><span class="price-badge">S/. 100.00</span></td>
+                    </tr>
+                    <tr>
+                        <td><img src="imagenes/insta360.jpeg" alt="Insta360 Invisible Stick" class="table-img"></td>
+                        <td>Invisible Selfie Stick (360)</td>
+                        <td>Palo de extensión rígido para tomas invisibles 360.</td>
+                        <td><span class="price-badge">S/. 80.00</span></td>
+                    </tr>
+                    <tr>
+                        <td><img src="imagenes/kit.jpeg" alt="Estuche kit duro" class="table-img"></td>
+                        <td>Estuche Duro & Kit Grande</td>
+                        <td>Maletín de espuma con accesorios variados de montaje.</td>
+                        <td><span class="price-badge">S/. 110.00</span></td>
                     </tr>
                     <tr>
                         <td><img src="imagenes/mando.jpeg" alt="Mando a distancia" class="table-img"></td>
-                        <td>Mando a Distancia Bluetooth</td>
-                        <td>Control remoto básico para disparar fotos o videos.</td>
-                        <td><span class="old-price">$14.00</span><span class="new-price">$9.80</span></td>
+                        <td>Mando a Distancia (Bluetooth)</td>
+                        <td>Control inalámbrico para disparar fotos o videos.</td>
+                        <td><span class="price-badge">S/. 40.00</span></td>
+                    </tr>
+                    <tr>
+                        <td><img src="imagenes/marcos.jpeg" alt="Carcasas marcos montaje" class="table-img"></td>
+                        <td>Marcos de Montaje Estándar</td>
+                        <td>Carcasas ligeras protectoras (frames).</td>
+                        <td><span class="price-badge">S/. 20.00</span></td>
+                    </tr>
+                    <tr>
+                        <td><img src="imagenes/monopod.jpeg" alt="Monopod extensible wired" class="table-img"></td>
+                        <td>Monopod Extensible (Cable)</td>
+                        <td>Palo selfie con disparador de cable básico.</td>
+                        <td><span class="price-badge">S/. 20.00</span></td>
+                    </tr>
+                    <tr>
+                        <td><img src="imagenes/mordedor.jpeg" alt="Soporte mordedor boca" class="table-img"></td>
+                        <td>Soporte Mordedor (Boca)</td>
+                        <td>Ideal para surf, bodyboard y tomas POV manos libres.</td>
+                        <td><span class="price-badge">S/. 20.00</span></td>
+                    </tr>
+                    <tr>
+                        <td><img src="imagenes/riel.jpeg" alt="Soporte riel camera" class="table-img"></td>
+                        <td>Soporte Riel de Cámara</td>
+                        <td>Riel de montaje para tomas estables.</td>
+                        <td><span class="price-badge">S/. 50.00</span></td>
+                    </tr>
+                    <tr>
+                        <td><img src="imagenes/tripode.jpeg" alt="Tripode flexible mano" class="table-img"></td>
+                        <td>Trípode Flexible Gorilla</td>
+                        <td>Patas articuladas que se envuelven alrededor de objetos.</td>
+                        <td><span class="price-badge">S/. 30.00</span></td>
                     </tr>
                 </tbody>
             </table>
@@ -278,101 +410,18 @@
     </section>
 
     <section>
-        <h2>Vista de Detalles (Lista)</h2>
+        <h2>Vista Detallada (Catálogo)</h2>
         <div class="product-list">
             
             <div class="product-card">
                 <div class="card-img-container">
-                    <img src="imagenes/image_283d85.png" alt="Empuñadura flotante" class="card-img">
+                    <img src="imagenes/flotador.jpeg" alt="Empuñadura flotante" class="card-img">
                 </div>
                 <div class="card-details">
-                    <h3>Empuñadura Flotante</h3>
+                    <h3>Empuñadura Flotante de Mano</h3>
                     <p>Monopod de mano impermeable que flota. Perfecto para buceo y snorkel. Incluye tornillo de sujeción largo y correa ajustable para la muñeca.</p>
                     <div class="card-price-block">
-                        <span class="discount-badge">TU PRECIO (70%)</span>
-                        <div>
-                            <span class="old-price">$5.00</span><span class="new-price">$3.50</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="card-img-container">
-                    <img src="imagenes/kit.jpeg" alt="Kit de accesorios" class="card-img">
-                </div>
-                <div class="card-details">
-                    <h3>Kit Completo de Accesorios</h3>
-                    <p>Estuche de transporte duro que contiene un arnés de pecho, arnés de cabeza, soporte de succión de coche, empuñadura flotante, mini trípode y varios adaptadores adhesivos.</p>
-                    <div class="card-price-block">
-                        <span class="discount-badge">TU PRECIO (70%)</span>
-                        <div>
-                            <span class="old-price">$25.00</span><span class="new-price">$17.50</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="card-img-container">
-                    <img src="imagenes/extensible.jpeg" alt="Mini tripode extensible" class="card-img">
-                </div>
-                <div class="card-details">
-                    <h3>Mini Trípode Extensible</h3>
-                    <p>Soporte de mano de dos secciones con patas de trípode magnéticas integradas. Ideal para vlogging y tomas de mesa.</p>
-                    <div class="card-price-block">
-                        <span class="discount-badge">TU PRECIO (70%)</span>
-                        <div>
-                            <span class="old-price">$8.00</span><span class="new-price">$5.60</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="card-img-container">
-                    <img src="imagenes/insta360.jpeg" alt="Insta360 invisible" class="card-img">
-                </div>
-                <div class="card-details">
-                    <h3>Palo Selfie Invisible (360)</h3>
-                    <p>Palo de extensión ultraligero y rígido de fibra de carbono. Diseñado para ser eliminado automáticamente por el software de las cámaras 360.</p>
-                    <div class="card-price-block">
-                        <span class="discount-badge">TU PRECIO (70%)</span>
-                        <div>
-                            <span class="old-price">$20.00</span><span class="new-price">$14.00</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="card-img-container">
-                    <img src="imagenes/abrazadera.jpeg" alt="Abrazadera" class="card-img">
-                </div>
-                <div class="card-details">
-                    <h3>Abrazadera con Cuello Flexible</h3>
-                    <p>Soporte de pinza potente (tipo Jaws) para sujetar la cámara a objetos de 0.6cm a 5cm de diámetro. Incluye cuello flexible para ajustar el ángulo.</p>
-                    <div class="card-price-block">
-                        <span class="discount-badge">TU PRECIO (70%)</span>
-                        <div>
-                            <span class="old-price">$12.00</span><span class="new-price">$8.40</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="card-img-container">
-                    <img src="imagenes/tripode.jpeg" alt="Tripode flexible" class="card-img">
-                </div>
-                <div class="card-details">
-                    <h3>Trípode Flexible "Gorilla"</h3>
-                    <p>Trípode con patas articuladas y engomadas que se pueden envolver alrededor de ramas, postes o barandillas para tomas únicas.</p>
-                    <div class="card-price-block">
-                        <span class="discount-badge">TU PRECIO (70%)</span>
-                        <div>
-                            <span class="old-price">$15.00</span><span class="new-price">$10.50</span>
-                        </div>
+                        <span class="price-badge">S/. 15.00</span>
                     </div>
                 </div>
             </div>
@@ -382,73 +431,28 @@
                     <img src="imagenes/3way.jpeg" alt="Soporte 3-way" class="card-img">
                 </div>
                 <div class="card-details">
-                    <h3>Soporte 3-Way (Brazo Plegable)</h3>
-                    <p>Soporte multifuncional tres en uno. Úsalo como empuñadura de cámara, brazo de extensión plegable o mini trípode de mesa.</p>
+                    <h3>Soporte multifunción 3-Way</h3>
+                    <p>Brazo plegable multifunción. Úsalo como empuñadura de cámara, brazo de extensión o mini trípode magnético de mesa.</p>
                     <div class="card-price-block">
-                        <span class="discount-badge">TU PRECIO (70%)</span>
-                        <div>
-                            <span class="old-price">$18.00</span><span class="new-price">$12.60</span>
-                        </div>
+                        <span class="price-badge">S/. 45.00</span>
                     </div>
                 </div>
             </div>
 
-            <div class="product-card">
-                <div class="card-img-container">
-                    <img src="imagenes/adhesivo.jpeg" alt="Soportes adhesivos" class="card-img">
-                </div>
-                <div class="card-details">
-                    <h3>Kit de Soportes Adhesivos</h3>
-                    <p>Pack básico que incluye dos adaptadores de montaje adhesivos planos y dos curvos con pegatinas de doble cara 3M VHB.</p>
-                    <div class="card-price-block">
-                        <span class="discount-badge">TU PRECIO (70%)</span>
-                        <div>
-                            <span class="old-price">$2.00</span><span class="new-price">$1.40</span>
-                        </div>
-                    </div>
-                </div>
             </div>
-
-            <div class="product-card">
-                <div class="card-img-container">
-                    <img src="imagenes/marcos.jpeg" alt="Marcos de montaje" class="card-img">
-                </div>
-                <div class="card-details">
-                    <h3>Carcasa de Marco Estándar</h3>
-                    <p>Marco protector de plástico liviano que rodea la cámara y permite conectarla directamente a soportes de GoPro sin el peso de una carcasa impermeable.</p>
-                    <div class="card-price-block">
-                        <span class="discount-badge">TU PRECIO (70%)</span>
-                        <div>
-                            <span class="old-price">$10.00</span><span class="new-price">$7.00</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="card-img-container">
-                    <img src="imagenes/mando.jpeg" alt="Mando a distancia" class="card-img">
-                </div>
-                <div class="card-details">
-                    <h3>Mando a Distancia (Bluetooth)</h3>
-                    <p>Control remoto inalámbrico compacto con botones para activar el obturador y cambiar el modo de grabación de la cámara de acción.</p>
-                    <div class="card-price-block">
-                        <span class="discount-badge">TU PRECIO (70%)</span>
-                        <div>
-                            <span class="old-price">$14.00</span><span class="new-price">$9.80</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
     </section>
 
 </main>
 
+<a href="https://wa.me/51957085531?text=Hola%2C%20vengo%20de%20tu%20Venta%20de%20Garage%20y%20quiero%20informaci%C3%B3n%20sobre%20tus%20accesorios%203D" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+    <svg class="whatsapp-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+        <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157.1zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+    </svg>
+</a>
+
 <footer>
-    <p>&copy; 2023 Catálogo Económico de Accesorios. Todos los derechos reservados.</p>
-    <p>Precios estimados de AliExpress y calculados.</p>
+    <p>&copy; 2023 Venta de Garage Económica de Accesorios. Lima, Perú.</p>
+    <p>Todos los artículos son clones o genéricos nuevos.</p>
 </footer>
 
 </body>
